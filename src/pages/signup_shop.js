@@ -24,12 +24,13 @@ const styles = {
 };
 
 
-class login extends Component {
+class signup extends Component {
     constructor() {
         super();
         this.state = {
             email: '',
             password: '',
+            nickname:'',
             loading: false,
             errors: {}
         }
@@ -39,11 +40,13 @@ class login extends Component {
         this.setState({
             loading: true
         });
-        const userData = {
+        const newUserData = {
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            nickname: this.state.nickname,
+            shop: 'true'
         }
-        axios.post('/login', userData)
+        axios.post('/signup', newUserData)
         .then(res => {
             console.log(res.data);
             localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
@@ -72,7 +75,7 @@ class login extends Component {
                 <Grid item sm/>
                 <Grid item sm>
                    <Typography variant="h2">
-                   Login
+                    Sign up
                    </Typography>
                    <form noValidate onSubmit={this.handleSubmit}>
                         <TextField id="email" name="email" type="email" 
@@ -82,20 +85,24 @@ class login extends Component {
                         <TextField id="password" name="password" type="password" 
                         label="Password" helperText={errors.password}
                         error={errors.password ? true : false} value={this.state.password} 
-                        onChange={this.handleChange} fullWidth/>   
+                        onChange={this.handleChange} fullWidth/>
+                        <TextField id="nickname" name="nickname" type="text" 
+                        label="Username" helperText={errors.nickname}
+                        error={errors.nickname ? true : false} value={this.state.nickname} 
+                        onChange={this.handleChange} fullWidth/>     
                         {errors.error && (
                             <Typography variant="body2">{errors.error}</Typography>
                         )}
                         <Button type="submit" variant="contained"
                         color="primary" className={classes.button}
                         disabled={loading}>
-                            Login
+                            Sign up
                             {loading && (
                                 <CircularProgress size={30} className={classes.progress}/>
                             )}
                         </Button>
                         <br/>
-                        <small>Don't have an account ? Sign up <Link to="/signup">here</Link></small>
+                        <small>Already have an account ? Login <Link to="/login">here</Link></small>
                    </form>
                 </Grid>
                 <Grid item sm/>
@@ -103,9 +110,9 @@ class login extends Component {
         )
     }
 }
-login.propTypes = {
+signup.propTypes = {
     classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(login);
+export default withStyles(styles)(signup);
 

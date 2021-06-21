@@ -5,8 +5,7 @@ import Shop from '../components/shop';
 
 class home extends Component {
     state = {
-        shops: null,
-        products: null
+        shops: null
     }
     componentDidMount() {
         axios.get('/shops')
@@ -15,17 +14,10 @@ class home extends Component {
             this.setState({shops: res.data});
         })
         .catch(err => console.log(err));
-        axios.get('/products')
-        .then((res) => {
-            console.log(res.data);
-            this.setState({products: res.data});
-        })
-        .catch(err => console.log(err));
-
     }
     render() {
         let shopsAround = this.state.shops ? (
-            this.state.shops.map((shop) => <Shop shop={shop}/>)
+            this.state.shops.map((shop) => <Shop key={shop.shop_name} shop={shop}/>)
         ) : (<p>Loadding...</p>);
         return (
             <Grid container>
