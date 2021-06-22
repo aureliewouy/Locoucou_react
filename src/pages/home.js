@@ -5,7 +5,8 @@ import Shop from '../components/shop';
 
 class home extends Component {
     state = {
-        shops: null
+        shops: null,
+        products: {}
     }
     componentDidMount() {
         axios.get('/shops')
