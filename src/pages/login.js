@@ -34,23 +34,25 @@ class login extends Component {
             email: '',
             password: '',
             errors: {}
-        }
-    };
+        };
+    }
+
+
     componentWillReceiveProps(nextProps){
         if (nextProps.UI.errors){
             this.setState({errors: nextProps.UI.errors})
-        }
-        
+        }      
     };
+
     handleSubmit = (event) => {
         event.preventDefault();
         const userData = {
             email: this.state.email,
             password: this.state.password
         };
-        this.props.loginUser(userData, this.props.history);
-       
+        this.props.loginUser(userData, this.props.history);     
     };
+
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -87,7 +89,7 @@ class login extends Component {
                             )}
                         </Button>
                         <br/>
-                        <small>Don't have an account ? Sign up <Link to="/signup">here</Link></small>
+                        <small>Don't have an account ? Sign up <Link to="/signup_shop">here</Link></small>
                    </form>
                 </Grid>
                 <Grid item sm/>
@@ -107,6 +109,7 @@ const mapStateToProps = (state) => ({
 });
 const mapActionToProps = {
     loginUser
-}
+};
+
 export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(login));
 
