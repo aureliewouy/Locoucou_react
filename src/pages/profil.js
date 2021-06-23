@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types';
 import withStyles from "@material-ui/core/styles/withStyles";
+import {Redirect} from 'react-router-dom';
 import {Link} from "react-router-dom";
 // MUI
 import Button from "@material-ui/core/Button";
@@ -69,19 +70,8 @@ class profil extends Component {
                 </div>
             </Paper>
         ) : (
-            <Paper>
-                <Typography>
-                    No profile found, please login
-                </Typography>
-                <div>
-                    <Button variant="contained" color="primary" component={Link} to="/login">
-                        Login
-                    </Button>
-                    <Button variant="contained" color="secondary" component={Link} to="/signup_shop">
-                        Signup
-                    </Button>
-                </div>
-            </Paper>
+            <Redirect to="/" />
+
         )) : (<p>loading...</p>)
         return profilMarkup;
     }
