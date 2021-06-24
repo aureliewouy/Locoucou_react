@@ -10,3 +10,10 @@ export const LOADING_UI = 'LOADING_UI';
 export const SET_ERRORS = 'SET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
+// 
+export const SET_SHOPS = "SET_SHOPS";
+export const LOADING_DATA = "LOADING_DATA";
+
+export const SET_PRODUCTS = "SET_PRODUCTS";
+
+
